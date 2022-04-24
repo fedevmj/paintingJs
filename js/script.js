@@ -15,6 +15,10 @@ window.onload = function(){
     canvas.width = canvasSize;
     canvas.height = canvasSize;
 
+    // 초기 배경화면 값 지정
+    context.fillStyle = "#fff";
+    context.fillRect(0,0,canvasSize,canvasSize)
+
     context.strokeStyle = initialColour;
     context.fillStyle = initialColour;
     context.lineWidth = 2.5;
@@ -57,6 +61,8 @@ window.onload = function(){
         canvas.addEventListener('mouseup', stopPainting)
         canvas.addEventListener('mouseleave', stopPainting)
         canvas.addEventListener('click', handleCanvasClick)
+        // contextmenu는 마우스 우클릭시 나타나는 메뉴이자 event
+        canvas.addEventListener('contextmenu', handleContextMenu)
     }
 
     // changing colour
@@ -115,5 +121,29 @@ window.onload = function(){
         }
     }
 
+    // Save 기능
+    function handleContextMenu(event){
+        console.log(event);
+        // contextmenu가 나타나는 event를 preventDefault했기때문에 우클릭시 메뉴가 나타나지 않는다.
+        event.preventDefault();
+    }
 
+    const saveBtn = document.getElementById('jsSave');
+
+    if(saveBtn){
+        saveBtn.addEventListener('click', handleSaveClick)
+    }
+
+    function handleSaveClick(){
+        // toDataURL(type, encoderOptions)
+        // image의 url 값을 가지고 온다.
+        const image = canvas.toDataURL('image/jpeg');
+        console.log(image);
+        const link = document.createElement('a');
+        // href는 이미지 && download는 이름이 되어야 함.
+        link.href = image;
+        link.download = 'paintJS[EXPORT]';
+        console.log(link);
+        link.click();
+    }
 }
