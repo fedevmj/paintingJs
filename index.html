@@ -5,14 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaintJS</title>
+
+    <!-- font-awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js"></script>
 </head>
 <body>
 
+    <!-- 모달창 -->
+    <div class="modal" id="modal">
+        <div class="modal-wrap">
+            <i class="fas fa-palette"></i>
+            <p>Vanilla JavaScript로 구현한 그림판 앱입니다. 그리기, 채우기 및 저장 기능을 이용할 수 있습니다 :) 원하는 그림을 자유롭게 그려보세요!</p>
+            <div class="modal-close" id="close"><i class="fas fa-times"></i></div>
+        </div>
+    </div>
+
+    <!-- 캔버스 -->
     <canvas id="jsCanvas" class="canvas"></canvas>
-    <!-- canvas는 context를 가지고 있는 HTML 요소 : 그 안에서 pixel들을 다룰 수 있다 -->
     <div class="controls">
 
         <div class="control-range">
